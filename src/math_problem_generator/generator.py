@@ -20,6 +20,9 @@ def get_result(operator_name: str, numbers: List[int]) -> Union[None, int, float
     Calculate the result for a list of numbers and an operator
     """
 
+    if len(numbers) < 2:
+        raise ValueError("Numbers list too short")
+
     # Define the operator function to use
     if operator_name == "add":
         o = operator.add
