@@ -5,9 +5,7 @@ repos:
     rev: v4.1.0
     hooks:
       - id: trailing-whitespace
-        exclude: test/files/maildir/.*
       - id: end-of-file-fixer
-        exclude: test/files/maildir/.*
       - id: check-yaml
       - id: check-added-large-files
   - repo: https://github.com/psf/black
