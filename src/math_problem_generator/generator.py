@@ -11,13 +11,13 @@ class SimpleMathProblem(TypedDict):
     type: str
     operator: str
     numbers: List[Union[int, float]]
-    result: Union[None, int, float]
+    solution: Union[None, int, float]
     users_answer: Union[None, int, float]
 
 
-def get_result(operator_name: str, numbers: List[int]) -> Union[None, int, float]:
+def simple_solution(operator_name: str, numbers: List[int]) -> Union[None, int, float]:
     """
-    Calculate the result for a list of numbers and an operator
+    Calculate the solution for a list of numbers and an operator
     """
 
     if len(numbers) < 2:
@@ -77,7 +77,7 @@ def simple_problems(
             "type": "simple",
             "operator": op,
             "numbers": [],
-            "result": None,
+            "solution": None,
             "users_answer": None,
         }
 
@@ -90,7 +90,7 @@ def simple_problems(
             p["numbers"].sort(reverse=True)
 
         # Add the result to the problem
-        p["result"] = get_result(op, p["numbers"])
+        p["solution"] = simple_solution(op, p["numbers"])
 
         # Add problem to list of problems
         problem_list.append(p)
