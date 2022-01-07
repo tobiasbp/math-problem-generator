@@ -33,7 +33,7 @@ def test_problem_data():
     assert isinstance(p["operator"], str)
     assert isinstance(p["numbers"], list)
     assert isinstance(p["solution"], int)
-    assert p["users_answer"] == None
+    assert p["users_answer"] is None
 
 
 def test_problem_seed():
