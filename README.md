@@ -34,6 +34,7 @@ Setup virtual environment
 2. `source .venv/bin/activate`
 3. `pip3 install -r requirements-dev.txt`
 4. `pip install -e src/`
+5. `pre-commit install`
 
-Leave virtual environment
+Leave virtual environment (when done)
 1. `deactivate`
