@@ -22,8 +22,8 @@ print(p)
 The code above should print something like this:
 ```
 [
-    {'type': 'simple', 'operator': 'add', 'numbers': [5, 2, 3, 6], 'result': 16, 'users_answer': None},
-    {'type': 'simple', 'operator': 'add', 'numbers': [6, 10, 10, 5], 'result': 31, 'users_answer': None}]
+    {'type': 'simple', 'operator': 'add', 'numbers': [5, 2, 3, 6], 'solution': 16, 'users_answer': None},
+    {'type': 'simple', 'operator': 'add', 'numbers': [6, 10, 10, 5], 'solution': 31, 'users_answer': None}]
 ]
 ```
 
