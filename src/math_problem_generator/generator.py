@@ -10,12 +10,14 @@ from typing import List, TypedDict, Union
 class SimpleMathProblem(TypedDict):
     type: str
     operator: str
-    numbers: List[Union[int, float]]
+    problem: List[Union[int, float]]
     solution: Union[None, int, float]
     users_answer: Union[None, int, float]
 
 
-def simple_solution(operator_name: str, numbers: List[int]) -> Union[None, int, float]:
+def simple_solution(
+    operator_name: str, numbers: List[Union[int, float]]
+) -> Union[None, int, float]:
     """
     Calculate the solution for a list of numbers and an operator
     """
@@ -46,6 +48,7 @@ def simple_solution(operator_name: str, numbers: List[int]) -> Union[None, int, 
     return r
 
 
+# FIXME: numbers: int > [[min,max],[min,max]]
 def simple_problems(
     op: str,
     no_of_problems: int = 25,
@@ -76,21 +79,21 @@ def simple_problems(
         p: SimpleMathProblem = {
             "type": "simple",
             "operator": op,
-            "numbers": [],
+            "problem": [],
             "solution": None,
             "users_answer": None,
         }
 
         # Generate numbers for problem
         for i in range(numbers):
-            p["numbers"].append(random.randint(min_number, max_number))
+            p["problem"].append(random.randint(min_number, max_number))
 
         # Sort highest numbers first
         if sort_numbers:
-            p["numbers"].sort(reverse=True)
+            p["problem"].sort(reverse=True)
 
         # Add the result to the problem
-        p["solution"] = simple_solution(op, p["numbers"])
+        p["solution"] = simple_solution(op, p["problem"])
 
         # Add problem to list of problems
         problem_list.append(p)

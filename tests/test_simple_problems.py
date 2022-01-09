@@ -18,7 +18,7 @@ def test_problem_keys():
     )[0]
     assert "type" in p
     assert "operator" in p
-    assert "numbers" in p
+    assert "problem" in p
     assert "solution" in p
     assert "users_answer" in p
 
@@ -31,7 +31,7 @@ def test_problem_data():
     )[0]
     assert isinstance(p["type"], str)
     assert isinstance(p["operator"], str)
-    assert isinstance(p["numbers"], list)
+    assert isinstance(p["problem"], list)
     assert isinstance(p["solution"], int)
     assert p["users_answer"] is None
 
@@ -42,7 +42,7 @@ def test_problem_seed():
         {
             "type": "simple",
             "operator": "add",
-            "numbers": [33, 32],
+            "problem": [33, 32],
             "solution": 65,
             "users_answer": None,
         }
