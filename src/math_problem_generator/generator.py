@@ -7,6 +7,19 @@ import random
 from typing import List, TypedDict, Union
 
 
+class SimpleMathProblemRange(TypedDict):
+    min: int
+    max: int
+
+
+class SimpleMathProblemRequest(TypedDict):
+    type: str
+    operator: str
+    problem: List[SimpleMathProblemRange]
+    no_of_problems: int
+    seed: Union[str, None]
+
+
 class SimpleMathProblem(TypedDict):
     type: str
     operator: str
@@ -49,51 +62,38 @@ def simple_solution(
 
 
 # FIXME: numbers: int > [[min,max],[min,max]]
-def simple_problems(
-    op: str,
-    no_of_problems: int = 25,
-    min_number: int = 1,
-    max_number: int = 100,
-    numbers: int = 2,
-    seed: Union[None, str] = None,
-    decimals: int = 4,
-    sort_numbers: bool = False,
-) -> List[SimpleMathProblem]:
+def simple_problems(request: SimpleMathProblemRequest) -> List[SimpleMathProblem]:
     """
     Generate simple math problems like 1+2=3
     """
 
     # Can't generate problems with less than 2 numbers
-    if numbers < 2:
+    if len(request["problem"]) < 2:
         raise ValueError("Argument 'numbers' less that 2")
 
     # Supply sees for predictable problems
-    if seed:
-        random.seed(seed)
+    if s := request["seed"]:
+        random.seed(s)
 
     problem_list = []
 
     # Generate the problems
-    for i in range(no_of_problems):
+    for i in range(request["no_of_problems"]):
         # Empty problem dict
         p: SimpleMathProblem = {
             "type": "simple",
-            "operator": op,
+            "operator": request["operator"],
             "problem": [],
             "solution": None,
             "users_answer": None,
         }
 
         # Generate numbers for problem
-        for i in range(numbers):
-            p["problem"].append(random.randint(min_number, max_number))
-
-        # Sort highest numbers first
-        if sort_numbers:
-            p["problem"].sort(reverse=True)
+        for nd in request["problem"]:
+            p["problem"].append(random.randint(nd["min"], nd["max"]))
 
         # Add the result to the problem
-        p["solution"] = simple_solution(op, p["problem"])
+        p["solution"] = simple_solution(request["operator"], p["problem"])
 
         # Add problem to list of problems
         problem_list.append(p)

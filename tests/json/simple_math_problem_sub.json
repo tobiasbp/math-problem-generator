@@ -1,0 +1,16 @@
+{
+    "type": "simple",
+    "operator": "sub",
+    "problem": [
+        {
+            "min": 100,
+            "max": 200
+        },
+        {
+            "min": 10,
+            "max": 99
+        }
+    ],
+    "no_of_problems": 25,
+    "seed": null
+}

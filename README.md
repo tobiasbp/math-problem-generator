@@ -14,14 +14,38 @@ A simple math problem like _1 + 2 = 3_. The supported operators are:
 | Multiplication | _mul_ |
 | Divison | _div_ |
 
-The representation of the problem _1 + 2 + 7 = 10_:
+A JSON request for 25 problems where three integers between 1 and 9 are to be added:
 ```
 {
-    'type': 'simple',
-    'operator': 'add',
-    'problem': [1, 2, 7],
-    'solution': 10,
-    'users_answer': None
+    "type": "simple",
+    "operator": "add",
+    "problem": [
+        {
+            "min": 1,
+            "max": 9
+        },
+        {
+            "min": 1,
+            "max": 9
+        },
+        {
+            "min": 1,
+            "max": 9
+        }
+    ],
+    "no_of_problems": 25,
+    "seed": null
+}
+```
+
+The JSON representation of the problem _1 + 2 + 7 = 10_:
+```
+{
+    "type": "simple",
+    "operator": "add",
+    "problem": [1, 2, 7],
+    "solution": 10,
+    "users_answer": null
 }
 ```
 # How to install
@@ -31,28 +55,56 @@ pip3 install math-problem-generator
 ```
 
 # Examples
-How to use the package.
+How to use the package. The code below is in _demo.py_ in the root of the repository.
 
 ```python
-# Import the package
+#!/usr/bin/env python
+
+import json
+from pathlib import Path
+
 from math_problem_generator import generator
 
-# Generate 2 simple addition problems with
-# 4 numbers between 1 and 10 to be added
-p = generator.simple_problems(
-        "add",no_of_problems=2,min_number=1,max_number=10,numbers=4
-    )
+
+# Load problem request from JSON file
+problem_request = json.loads(
+    Path("tests/json/simple_math_problem_add.json").read_text()
+)
+
+# Generate simple problems from request
+list_of_problems = generator.simple_problems(problem_request)
 
 # Print the math problems
-print(p)
+print(json.dumps(list_of_problems[0], sort_keys=True, indent=4))
 ```
 
-The code above should print something like this:
-```
+The code above should print a two JSON formatted simple math problems like this:
+```json
 [
-    {'type': 'simple', 'operator': 'add', 'problem': [5, 2, 3, 6], 'solution': 16, 'users_answer': None},
-    {'type': 'simple', 'operator': 'add', 'problem': [6, 10, 10, 5], 'solution': 31, 'users_answer': None}]
+    {
+        "operator": "add",
+        "problem": [
+            9,
+            1,
+            9
+        ],
+        "solution": 19,
+        "type": "simple",
+        "users_answer": null
+    },
+    {
+        "operator": "add",
+        "problem": [
+            6,
+            9,
+            2
+        ],
+        "solution": 17,
+        "type": "simple",
+        "users_answer": null
+    }
 ]
+
 ```
 
 # Development
