@@ -61,19 +61,19 @@ operator and the matching row/col values. The lowest value in a row/col is alway
 Here is an example of a matrix where the operator is _add_. The solution to the cell
 marked _x_ is `1 + 2 = 3` (row + collumn).
 
-| _add_ | 0 | 1 | 2 |
+| _add_ | 1 | 2 | 3 |
 |-------| - | - | - |
-| 0     |   |   |   |
 | 1     |   |   |   |
-| 2     |   | x |   |
+| 2     |   |   |   |
+| 3     |   | x |   |
 
 This table shows the problem matrix with the correct solution.
 
-| _add_ | 0 | 1 | 2 |
+| _add_ | 1 | 2 | 3 |
 |-------| - | - | - |
-| 0     | 0 | 1 | 2 |
-| 1     | 1 | 2 | 3 |
-| 2     | 2 | 3 | 4 |
+| 1     | 2 | 3 | 4 |
+| 2     | 3 | 4 | 5 |
+| 3     | 4 | 5 | 6 |
 
 A request for 25 matrix problems of size 5 x 5 with the _mul_ operator:
 
