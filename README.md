@@ -59,7 +59,7 @@ The JSON representation of the problem _1 + 2 + 7 = 10_:
 Type matrix problem type consists of a matrix where the cells are the result of an
 operator and the matching row/col values. The lowest value in a row/col is always 1.
 Here is an example of a matrix where the operator is _add_. The solution to the cell
-marked _x_ is `1 + 2 = 3` (row + collumn).
+marked _x_ is `3 + 2 = 5` (collumn + row).
 
 | _add_ | 1 | 2 | 3 |
 |-------| - | - | - |
