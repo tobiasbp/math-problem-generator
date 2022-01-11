@@ -1,0 +1,8 @@
+{
+    "type": "matrix",
+    "operator": "add",
+    "collumns": 5,
+    "rows": 5,
+    "no_of_problems": 25,
+    "seed": null
+}

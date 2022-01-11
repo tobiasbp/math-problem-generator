@@ -35,6 +35,14 @@ def test_problem_repeatable():
     assert p1 == p2
 
 
+def test_simple_problem_support_in_function_problems():
+    data = SIMPLE_MATH_PROBLEM_ADD
+    data["seed"] = "foobar"
+    p1 = g.simple_problems(data)
+    p2 = g.problems(data)
+    assert p1 == p2
+
+
 def test_problem_keys():
     # problem has expected keys
     p = g.simple_problems(SIMPLE_MATH_PROBLEM_ADD)[0]
