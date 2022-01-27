@@ -1,0 +1,16 @@
+{
+    "type": "missing_number",
+    "operator": "sub",
+    "problem": [
+        {
+            "min": 10,
+            "max": 99
+        },
+        {
+            "min": 10,
+            "max": 99
+        }
+    ],
+    "no_of_problems": 25,
+    "seed": null
+}

@@ -4,9 +4,17 @@ generating the problems. There is no support for presentation or user interactio
 The user of the library submits a JSON formatted _problem request_,
 and recieves a list of math problems.
 
+
+# How to install
+The package is distributed via [pypi.org](https://pypi.org/), and can be
+installed with the package manager _pip_ like this:
+```
+pip3 install math-problem-generator
+```
+
 # Types of problems
-The package supports two types of math problems: _simple_ and _matrix_.
-Both types of problems must specify an operator. The supported operators are these:
+The package supports three types of math problems: _simple_, _matrix_ and _missing_number_.
+All problem types must specify an operator. The supported operators are:
 
 | Operator | String representation |
 |----------|-----------------------|
@@ -19,8 +27,7 @@ Both types of problems must specify an operator. The supported operators are the
 A simple math problem like _1 + 2 = 3_.
 
 A JSON request for 25 problems where three integers between 1 and 9 are to be added.
-A seed can be supplied, if the same set of problems are required for repeated
-repeated requests:
+A seed can be supplied, if the same set of problems are required for repeated requests:
 ```
 {
     "type": "simple",
@@ -88,7 +95,7 @@ A request for 25 matrix problems of size 5 x 5 with the _mul_ operator:
 }
 ```
 
-A matrix problem if size 2 x 2 with the _add_ operator:
+A matrix problem of size 2 x 2 with the _add_ operator:
 ```
 {
     "operator": "add",
@@ -99,18 +106,48 @@ A matrix problem if size 2 x 2 with the _add_ operator:
     "solution": [
         [
             [11, 21],
-            [22, 22]
+            [12, 22]
         ]
     ],
     "type": "matrix",
     "users_answer": null
 }
 ```
+## Missing number
+A simple math problem where the result is known, but one number is missing.
+An example of this type of problem is `1 + x = 5`. The solution is 4. For the _div_
+operator, the problem length is limitied to 2. That is, a problem like `10 / 5 / x = 2`
+is not allowed.
 
-# How to install
-The package is distributed via [pypi.org](https://pypi.org/), and can be installed with _pip_ like this:
+A request for 25 _missing_number_ problems with two two digit numbers to be added:
 ```
-pip3 install math-problem-generator
+{
+    "type": "missing_number",
+    "operator": "add",
+    "problem": [
+        {
+            "min": 10,
+            "max": 99
+        },
+        {
+            "min": 10,
+            "max": 99
+        }
+    ],
+    "no_of_problems": 25,
+    "seed": null
+}
+```
+
+The JSON representation of the problem _15 + x = 20_:
+```
+{
+    "type": "missing_number",
+    "operator": "add",
+    "problem": [15, null, 20],
+    "solution": 5,
+    "users_answer": null
+}
 ```
 
 # Examples
